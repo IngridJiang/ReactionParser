@@ -25,4 +25,42 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="protocols" upperBound="-1"
         eType="#//Protocol" containment="true"/>
   </eClassifiers>
+
+  <!-- Named -->
+    <eClassifiers xsi:type="ecore:EClass" name="Named" abstract="true">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+
+    <!-- Task -->
+    <eClassifiers xsi:type="ecore:EClass" name="Task">
+        <eSuperTypes href="#//Named"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="processes" eType="#//Method" lowerBound="0" upperBound="1"/>
+    </eClassifiers>
+
+    <!-- Method -->
+    <eClassifiers xsi:type="ecore:EClass" name="Method"/>
+
+    <!-- Tasks -->
+    <eClassifiers xsi:type="ecore:EClass" name="InterruptTask">
+        <eSuperTypes href="#//Task"/>
+    </eClassifiers>
+
+    <eClassifiers xsi:type="ecore:EClass" name="InitTask">
+        <eSuperTypes href="#//Task"/>
+    </eClassifiers>
+
+    <eClassifiers xsi:type="ecore:EClass" name="PeriodicTask">
+        <eSuperTypes href="#//Task"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="period" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" defaultValueLiteral="0.0"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="delay" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" defaultValueLiteral="0.0"/>
+    </eClassifiers>
+
+    <eClassifiers xsi:type="ecore:EClass" name="SoftwareTask">
+        <eSuperTypes href="#//Task"/>
+    </eClassifiers>
+
+    <eClassifiers xsi:type="ecore:EClass" name="TimeTableTask">
+        <eSuperTypes href="#//Task"/>
+    </eClassifiers>
 </ecore:EPackage>

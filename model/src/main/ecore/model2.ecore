@@ -12,4 +12,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="Entitys" lowerBound="2"
         upperBound="-1" eType="#//Entity"/>
   </eClassifiers>
+
+   <!-- Process -->
+    <eClassifiers xsi:type="ecore:EClass" name="Process" abstract="true"/>
+
+    <!-- ISR -->
+    <eClassifiers xsi:type="ecore:EClass" name="ISR">
+        <eSuperTypes href="#//Process"/>
+    </eClassifiers>
+
+    <!-- Task -->
+    <eClassifiers xsi:type="ecore:EClass" name="Task">
+        <eSuperTypes href="#//Process"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="preemption"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+            defaultValueLiteral="cooperative"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="multipleTaskActivationLimit"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+            defaultValueLiteral="0"/>
+    </eClassifiers>
 </ecore:EPackage>

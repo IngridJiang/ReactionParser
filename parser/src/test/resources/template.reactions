@@ -21,3 +21,19 @@ routine deleteComponent (model::Device device){
 	}
 	
 }
+
+reaction InterruptTaskDeleted {
+	after element model::InterruptTask deleted
+	call deleteTask(affectedEObject)
+}
+
+routine deleteTask (model::InterruptTask interruptTask){
+	match{
+		val Task = retrieve model2::Task corresponding to interruptTask
+	}
+	update{
+		removeObject(Task)
+		removeCorrespondenceBetween(interruptTask, Task)
+	}
+	
+}

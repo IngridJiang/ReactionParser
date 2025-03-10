@@ -18,7 +18,23 @@
         <code xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
           <feature xsi:type="types:JvmOperation" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/0/@members.1"/>
           <featureCallArguments xsi:type="xbase:XFeatureCall">
-            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/3/@members.2/@members.1/@parameters.1"/>
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/4/@members.2/@members.1/@parameters.1"/>
+          </featureCallArguments>
+        </code>
+      </callRoutine>
+    </reactions>
+    <reactions name="InterruptTaskDeleted">
+      <trigger xsi:type="language:ModelElementChange">
+        <elementType metamodel="//@metamodelImports.0">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//InterruptTask"/>
+        </elementType>
+        <changeType xsi:type="language:ElementDeletionChangeType"/>
+      </trigger>
+      <callRoutine>
+        <code xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+          <feature xsi:type="types:JvmOperation" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/0/@members.2"/>
+          <featureCallArguments xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/5/@members.2/@members.1/@parameters.1"/>
           </featureCallArguments>
         </code>
       </callRoutine>
@@ -55,6 +71,43 @@
             </featureCallArguments>
             <featureCallArguments xsi:type="xbase:XFeatureCall">
               <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/2/@members.4/@members.1/@parameters.1"/>
+            </featureCallArguments>
+          </expressions>
+        </code>
+      </updateBlock>
+    </routines>
+    <routines name="deleteTask">
+      <input>
+        <modelInputElements metamodel="//@metamodelImports.0" name="interruptTask">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//InterruptTask"/>
+        </modelInputElements>
+      </input>
+      <matchBlock>
+        <matchStatements xsi:type="language:RetrieveModelElement" name="Task">
+          <elementType metamodel="//@metamodelImports.1">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Task"/>
+          </elementType>
+          <correspondenceSource xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/3/@members.3/@members.2/@parameters.0"/>
+          </correspondenceSource>
+          <retrievalType xsi:type="language:RetrieveOneModelElement"/>
+        </matchStatements>
+      </matchBlock>
+      <updateBlock>
+        <code xsi:type="xbase:XBlockExpression">
+          <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.removeObject(org.eclipse.emf.ecore.EObject)"/>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/3/@members.4/@members.1/@parameters.1"/>
+            </featureCallArguments>
+          </expressions>
+          <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.removeCorrespondenceBetween(org.eclipse.emf.ecore.EObject,org.eclipse.emf.ecore.EObject)"/>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/3/@members.4/@members.1/@parameters.0"/>
+            </featureCallArguments>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/3/@members.4/@members.1/@parameters.1"/>
             </featureCallArguments>
           </expressions>
         </code>
