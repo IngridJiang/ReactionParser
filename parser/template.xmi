@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="ASCII"?>
 <toplevelelements:ReactionsFile xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:language="http://vitruv.tools/dsls/reactions/language" xmlns:toplevelelements="http://vitruv.tools/dsls/reactions/language/toplevelelements" xmlns:types="http://www.eclipse.org/xtext/common/JavaVMTypes" xmlns:xbase="http://www.eclipse.org/xtext/xbase/Xbase">
-  <metamodelImports name="model">
+  <metamodelImports name="ascet">
     <package href="http://vitruv.tools/reactionsparser/model#/"/>
   </metamodelImports>
-  <metamodelImports name="model2">
+  <metamodelImports name="amalthea">
     <package href="http://vitruv.tools/reactionsparser/model2#/"/>
   </metamodelImports>
-  <reactionsSegments name="model2Model2" fromMetamodels="//@metamodelImports.0" toMetamodels="//@metamodelImports.1">
-    <reactions name="ModeldeviceDeleted">
+  <reactionsSegments name="ascet2amalthea" fromMetamodels="//@metamodelImports.0" toMetamodels="//@metamodelImports.1">
+    <reactions name="InterruptTaskDeleted">
       <trigger xsi:type="language:ModelElementChange">
         <elementType metamodel="//@metamodelImports.0">
-          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//Device"/>
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//InterruptTask"/>
         </elementType>
         <changeType xsi:type="language:ElementDeletionChangeType"/>
       </trigger>
@@ -23,12 +23,12 @@
         </code>
       </callRoutine>
     </reactions>
-    <reactions name="InterruptTaskDeleted">
-      <trigger xsi:type="language:ModelElementChange">
-        <elementType metamodel="//@metamodelImports.0">
-          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//InterruptTask"/>
-        </elementType>
-        <changeType xsi:type="language:ElementDeletionChangeType"/>
+    <reactions name="InitTaskNameChanged">
+      <trigger xsi:type="language:ModelAttributeReplacedChange">
+        <feature metamodel="//@metamodelImports.0">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//InitTask"/>
+          <feature href="http://vitruv.tools/reactionsparser/model#//Named/name"/>
+        </feature>
       </trigger>
       <callRoutine>
         <code xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
@@ -39,16 +39,16 @@
         </code>
       </callRoutine>
     </reactions>
-    <routines name="deleteComponent">
+    <routines name="deleteTask">
       <input>
-        <modelInputElements metamodel="//@metamodelImports.0" name="device">
-          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//Device"/>
+        <modelInputElements metamodel="//@metamodelImports.0" name="interruptTask">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//InterruptTask"/>
         </modelInputElements>
       </input>
       <matchBlock>
-        <matchStatements xsi:type="language:RetrieveModelElement" name="Entity">
+        <matchStatements xsi:type="language:RetrieveModelElement" name="Task">
           <elementType metamodel="//@metamodelImports.1">
-            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Entity"/>
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Task"/>
           </elementType>
           <correspondenceSource xsi:type="xbase:XFeatureCall">
             <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/2/@members.3/@members.2/@parameters.0"/>
@@ -76,10 +76,10 @@
         </code>
       </updateBlock>
     </routines>
-    <routines name="deleteTask">
+    <routines name="changeAmaltheaTaskName">
       <input>
-        <modelInputElements metamodel="//@metamodelImports.0" name="interruptTask">
-          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//InterruptTask"/>
+        <modelInputElements metamodel="//@metamodelImports.0" name="initTask">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//InitTask"/>
         </modelInputElements>
       </input>
       <matchBlock>
@@ -95,20 +95,17 @@
       </matchBlock>
       <updateBlock>
         <code xsi:type="xbase:XBlockExpression">
-          <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
-            <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.removeObject(org.eclipse.emf.ecore.EObject)"/>
-            <featureCallArguments xsi:type="xbase:XFeatureCall">
+          <expressions xsi:type="xbase:XAssignment">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.reactionsparser.model.model2.Task#tools.vitruv.reactionsparser.model.model2.Task.setName(java.lang.String)"/>
+            <assignable xsi:type="xbase:XFeatureCall">
               <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/3/@members.4/@members.1/@parameters.1"/>
-            </featureCallArguments>
-          </expressions>
-          <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
-            <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.removeCorrespondenceBetween(org.eclipse.emf.ecore.EObject,org.eclipse.emf.ecore.EObject)"/>
-            <featureCallArguments xsi:type="xbase:XFeatureCall">
-              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/3/@members.4/@members.1/@parameters.0"/>
-            </featureCallArguments>
-            <featureCallArguments xsi:type="xbase:XFeatureCall">
-              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/3/@members.4/@members.1/@parameters.1"/>
-            </featureCallArguments>
+            </assignable>
+            <value xsi:type="xbase:XMemberFeatureCall">
+              <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.reactionsparser.model.model.Named#tools.vitruv.reactionsparser.model.model.Named.getName()"/>
+              <memberCallTarget xsi:type="xbase:XFeatureCall">
+                <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/3/@members.4/@members.1/@parameters.0"/>
+              </memberCallTarget>
+            </value>
           </expressions>
         </code>
       </updateBlock>

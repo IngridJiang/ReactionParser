@@ -24,6 +24,9 @@
     <!-- Task -->
     <eClassifiers xsi:type="ecore:EClass" name="Task">
         <eSuperTypes href="#//Process"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        />
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="preemption"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
             defaultValueLiteral="cooperative"/>

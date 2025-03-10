@@ -1,39 +1,37 @@
-import "http://vitruv.tools/reactionsparser/model" as model
-import "http://vitruv.tools/reactionsparser/model2" as model2
+import "http://vitruv.tools/reactionsparser/model" as ascet
+import "http://vitruv.tools/reactionsparser/model2" as amalthea
 
-reactions: model2Model2
-in reaction to changes in model
-execute actions in model2
-
-reaction ModeldeviceDeleted {
-	after element model::Device deleted
-	call deleteComponent(affectedEObject)
-	
-}
-
-routine deleteComponent (model::Device device){
-	match{
-		val Entity = retrieve model2::Entity corresponding to device
-	}
-	update{
-		removeObject(Entity)
-		removeCorrespondenceBetween(device, Entity)
-	}
-	
-}
+reactions: ascet2amalthea
+in reaction to changes in ascet
+execute actions in amalthea
 
 reaction InterruptTaskDeleted {
-	after element model::InterruptTask deleted
+	after element ascet::InterruptTask deleted
 	call deleteTask(affectedEObject)
 }
 
-routine deleteTask (model::InterruptTask interruptTask){
+routine deleteTask (ascet::InterruptTask interruptTask){
 	match{
-		val Task = retrieve model2::Task corresponding to interruptTask
+		val Task = retrieve amalthea::Task corresponding to interruptTask
 	}
 	update{
 		removeObject(Task)
 		removeCorrespondenceBetween(interruptTask, Task)
 	}
 	
+}
+
+reaction InitTaskNameChanged{
+	after attribute replaced at ascet::InitTask[name]
+	call changeAmaltheaTaskName(affectedEObject)
+}
+
+
+routine changeAmaltheaTaskName(ascet::InitTask initTask){
+	match {
+		val Task = retrieve amalthea::Task corresponding to initTask
+	}
+	update{
+		Task.name = initTask.name
+	}
 }
