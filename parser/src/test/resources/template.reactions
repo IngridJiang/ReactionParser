@@ -1,0 +1,23 @@
+import "http://vitruv.tools/reactionsparser/model" as model
+import "http://vitruv.tools/reactionsparser/model2" as model2
+
+reactions: model2Model2
+in reaction to changes in model
+execute actions in model2
+
+reaction ModeldeviceDeleted {
+	after element model::Device deleted
+	call deleteComponent(affectedEObject)
+	
+}
+
+routine deleteComponent (model::Device device){
+	match{
+		val Entity = retrieve model2::Entity corresponding to device
+	}
+	update{
+		removeObject(Entity)
+		removeCorrespondenceBetween(device, Entity)
+	}
+	
+}

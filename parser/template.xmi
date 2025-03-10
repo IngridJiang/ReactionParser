@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ASCII"?>
+<toplevelelements:ReactionsFile xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:language="http://vitruv.tools/dsls/reactions/language" xmlns:toplevelelements="http://vitruv.tools/dsls/reactions/language/toplevelelements" xmlns:types="http://www.eclipse.org/xtext/common/JavaVMTypes" xmlns:xbase="http://www.eclipse.org/xtext/xbase/Xbase">
+  <metamodelImports name="model">
+    <package href="http://vitruv.tools/reactionsparser/model#/"/>
+  </metamodelImports>
+  <metamodelImports name="model2">
+    <package href="http://vitruv.tools/reactionsparser/model2#/"/>
+  </metamodelImports>
+  <reactionsSegments name="model2Model2" fromMetamodels="//@metamodelImports.0" toMetamodels="//@metamodelImports.1">
+    <reactions name="ModeldeviceDeleted">
+      <trigger xsi:type="language:ModelElementChange">
+        <elementType metamodel="//@metamodelImports.0">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//Device"/>
+        </elementType>
+        <changeType xsi:type="language:ElementDeletionChangeType"/>
+      </trigger>
+      <callRoutine>
+        <code xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+          <feature xsi:type="types:JvmOperation" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/0/@members.1"/>
+          <featureCallArguments xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/3/@members.2/@members.1/@parameters.1"/>
+          </featureCallArguments>
+        </code>
+      </callRoutine>
+    </reactions>
+    <routines name="deleteComponent">
+      <input>
+        <modelInputElements metamodel="//@metamodelImports.0" name="device">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//Device"/>
+        </modelInputElements>
+      </input>
+      <matchBlock>
+        <matchStatements xsi:type="language:RetrieveModelElement" name="Entity">
+          <elementType metamodel="//@metamodelImports.1">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Entity"/>
+          </elementType>
+          <correspondenceSource xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/2/@members.3/@members.2/@parameters.0"/>
+          </correspondenceSource>
+          <retrievalType xsi:type="language:RetrieveOneModelElement"/>
+        </matchStatements>
+      </matchBlock>
+      <updateBlock>
+        <code xsi:type="xbase:XBlockExpression">
+          <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.removeObject(org.eclipse.emf.ecore.EObject)"/>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/2/@members.4/@members.1/@parameters.1"/>
+            </featureCallArguments>
+          </expressions>
+          <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.removeCorrespondenceBetween(org.eclipse.emf.ecore.EObject,org.eclipse.emf.ecore.EObject)"/>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/2/@members.4/@members.1/@parameters.0"/>
+            </featureCallArguments>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template.reactions#/2/@members.4/@members.1/@parameters.1"/>
+            </featureCallArguments>
+          </expressions>
+        </code>
+      </updateBlock>
+    </routines>
+  </reactionsSegments>
+</toplevelelements:ReactionsFile>

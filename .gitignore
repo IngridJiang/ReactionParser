@@ -1,0 +1,17 @@
+# VS Code
+.vscode/
+
+# Maven
+target/
+*.log
+.mvn/wrapper/*.jar
+.flattened-pom.xml
+dependency-reduced-pom.xml
+
+# Eclipse
+META-INF
+build.properties
+plugin.properties
+
+# Xtext
+.antlr-generator-*-patch.jar
