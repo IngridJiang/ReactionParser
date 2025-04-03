@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="ASCII"?>
+<toplevelelements:ReactionsFile xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:language="http://vitruv.tools/dsls/reactions/language" xmlns:toplevelelements="http://vitruv.tools/dsls/reactions/language/toplevelelements" xmlns:types="http://www.eclipse.org/xtext/common/JavaVMTypes" xmlns:xbase="http://www.eclipse.org/xtext/xbase/Xbase">
+  <metamodelImports name="ascet">
+    <package href="http://vitruv.tools/reactionsparser/model#/"/>
+  </metamodelImports>
+  <metamodelImports name="amalthea">
+    <package href="http://vitruv.tools/reactionsparser/model2#/"/>
+  </metamodelImports>
+  <reactionsSegments name="amalthea2ascet" fromMetamodels="//@metamodelImports.1" toMetamodels="//@metamodelImports.0">
+    <reactions name="TaskDeleted">
+      <trigger xsi:type="language:ModelElementChange">
+        <elementType metamodel="//@metamodelImports.1">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Task"/>
+        </elementType>
+        <changeType xsi:type="language:ElementDeletionChangeType"/>
+      </trigger>
+      <callRoutine>
+        <code xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+          <feature xsi:type="types:JvmOperation" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/0/@members.1"/>
+          <featureCallArguments xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/8/@members.2/@members.1/@parameters.1"/>
+          </featureCallArguments>
+        </code>
+      </callRoutine>
+    </reactions>
+    <reactions name="TaskCreated">
+      <trigger xsi:type="language:ModelElementChange">
+        <elementType metamodel="//@metamodelImports.1">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Task"/>
+        </elementType>
+        <changeType xsi:type="language:ElementInsertionInListChangeType">
+          <feature metamodel="//@metamodelImports.1">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//ComponentContainer"/>
+            <feature href="http://vitruv.tools/reactionsparser/model2#//ComponentContainer/tasks"/>
+          </feature>
+        </changeType>
+      </trigger>
+      <callRoutine>
+        <code xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+          <feature xsi:type="types:JvmOperation" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/0/@members.2"/>
+          <featureCallArguments xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/9/@members.2/@members.1/@parameters.3"/>
+          </featureCallArguments>
+          <featureCallArguments xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/9/@members.2/@members.1/@parameters.1"/>
+          </featureCallArguments>
+        </code>
+      </callRoutine>
+    </reactions>
+    <routines name="deleteTask">
+      <input>
+        <modelInputElements metamodel="//@metamodelImports.1" name="task">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Task"/>
+        </modelInputElements>
+      </input>
+      <matchBlock>
+        <matchStatements xsi:type="language:RetrieveModelElement" name="ascettask">
+          <elementType metamodel="//@metamodelImports.0">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//Task"/>
+          </elementType>
+          <correspondenceSource xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/2/@members.3/@members.2/@parameters.0"/>
+          </correspondenceSource>
+          <retrievalType xsi:type="language:RetrieveOneModelElement"/>
+        </matchStatements>
+      </matchBlock>
+      <updateBlock>
+        <code xsi:type="xbase:XBlockExpression">
+          <expressions xsi:type="xbase:XIfExpression">
+            <if xsi:type="xbase:XBinaryOperation">
+              <feature xsi:type="types:JvmOperation" href="java:/Objects/org.eclipse.xtext.xbase.lib.ObjectExtensions#org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_tripleNotEquals(java.lang.Object,java.lang.Object)"/>
+              <leftOperand xsi:type="xbase:XFeatureCall">
+                <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/2/@members.4/@members.1/@parameters.1"/>
+              </leftOperand>
+              <rightOperand xsi:type="xbase:XNullLiteral"/>
+            </if>
+            <then xsi:type="xbase:XBlockExpression">
+              <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+                <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.removeObject(org.eclipse.emf.ecore.EObject)"/>
+                <featureCallArguments xsi:type="xbase:XFeatureCall">
+                  <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/2/@members.4/@members.1/@parameters.1"/>
+                </featureCallArguments>
+              </expressions>
+              <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+                <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.removeCorrespondenceBetween(org.eclipse.emf.ecore.EObject,org.eclipse.emf.ecore.EObject)"/>
+                <featureCallArguments xsi:type="xbase:XFeatureCall">
+                  <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/2/@members.4/@members.1/@parameters.0"/>
+                </featureCallArguments>
+                <featureCallArguments xsi:type="xbase:XFeatureCall">
+                  <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/2/@members.4/@members.1/@parameters.1"/>
+                </featureCallArguments>
+              </expressions>
+            </then>
+          </expressions>
+        </code>
+      </updateBlock>
+    </routines>
+    <routines name="createAscetTask">
+      <input>
+        <modelInputElements metamodel="//@metamodelImports.1" name="task">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Task"/>
+        </modelInputElements>
+        <modelInputElements metamodel="//@metamodelImports.1" name="container">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//ComponentContainer"/>
+        </modelInputElements>
+      </input>
+      <updateBlock>
+        <code xsi:type="xbase:XBlockExpression">
+          <expressions xsi:type="xbase:XVariableDeclaration" name="userMsg">
+            <type xsi:type="types:JvmParameterizedTypeReference">
+              <type xsi:type="types:JvmGenericType" href="java:/Objects/java.lang.String#java.lang.String"/>
+            </type>
+            <right xsi:type="xbase:XStringLiteral" value="A Task has been created. Please decide whether and which corresponding ASCET Task should be created."/>
+          </expressions>
+          <expressions xsi:type="xbase:XVariableDeclaration" name="interruptTaskOption">
+            <right xsi:type="xbase:XStringLiteral" value="Create InterruptTask"/>
+          </expressions>
+          <expressions xsi:type="xbase:XVariableDeclaration" name="periodicTaskOption">
+            <right xsi:type="xbase:XStringLiteral" value="Create PeriodicTask"/>
+          </expressions>
+          <expressions xsi:type="xbase:XVariableDeclaration" name="softwareTaskOption">
+            <right xsi:type="xbase:XStringLiteral" value="Create SoftwareTask"/>
+          </expressions>
+          <expressions xsi:type="xbase:XVariableDeclaration" name="timeTableTaskOption">
+            <right xsi:type="xbase:XStringLiteral" value="Create TimeTableTask"/>
+          </expressions>
+          <expressions xsi:type="xbase:XVariableDeclaration" name="doNothingOption">
+            <right xsi:type="xbase:XStringLiteral" value="Decide Later"/>
+          </expressions>
+          <expressions xsi:type="xbase:XVariableDeclaration" name="options">
+            <type xsi:type="types:JvmGenericArrayTypeReference">
+              <componentType xsi:type="types:JvmParameterizedTypeReference">
+                <type xsi:type="types:JvmGenericType" href="java:/Objects/java.lang.String#java.lang.String"/>
+              </componentType>
+            </type>
+            <right xsi:type="xbase:XListLiteral">
+              <elements xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.1"/>
+              <elements xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.2"/>
+              <elements xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.3"/>
+              <elements xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.4"/>
+              <elements xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.5"/>
+            </right>
+          </expressions>
+          <expressions xsi:type="xbase:XVariableDeclaration" name="selected">
+            <right xsi:type="xbase:XMemberFeatureCall" explicitOperationCall="true">
+              <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.change.interaction.builder.InteractionBuilder#tools.vitruv.change.interaction.builder.InteractionBuilder.startInteraction()"/>
+              <memberCallTarget xsi:type="xbase:XMemberFeatureCall" explicitOperationCall="true">
+                <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.change.interaction.builder.MultipleChoiceSelectionInteractionBuilder#tools.vitruv.change.interaction.builder.MultipleChoiceSelectionInteractionBuilder$ChoicesStep.choices(java.lang.Iterable)"/>
+                <memberCallTarget xsi:type="xbase:XMemberFeatureCall" explicitOperationCall="true">
+                  <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.change.interaction.builder.MultipleChoiceSelectionInteractionBuilder#tools.vitruv.change.interaction.builder.MultipleChoiceSelectionInteractionBuilder.message(java.lang.String)"/>
+                  <memberCallTarget xsi:type="xbase:XMemberFeatureCall">
+                    <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.change.interaction.UserInteractor#tools.vitruv.change.interaction.UserInteractor.getSingleSelectionDialogBuilder()"/>
+                    <memberCallTarget xsi:type="xbase:XFeatureCall">
+                      <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.state.ReactionExecutionState#tools.vitruv.dsls.reactions.runtime.state.ReactionExecutionState.getUserInteractor()"/>
+                    </memberCallTarget>
+                  </memberCallTarget>
+                  <memberCallArguments xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.0"/>
+                </memberCallTarget>
+                <memberCallArguments xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.6"/>
+              </memberCallTarget>
+            </right>
+          </expressions>
+          <expressions xsi:type="xbase:XSwitchExpression">
+            <switch xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.7"/>
+            <cases>
+              <case xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.1"/>
+              <then xsi:type="xbase:XBlockExpression">
+                <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+                  <feature xsi:type="types:JvmOperation" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/0/@members.3"/>
+                  <featureCallArguments xsi:type="xbase:XFeatureCall">
+                    <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/3/@members.2/@members.1/@parameters.0"/>
+                  </featureCallArguments>
+                  <featureCallArguments xsi:type="xbase:XFeatureCall">
+                    <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/3/@members.2/@members.1/@parameters.1"/>
+                  </featureCallArguments>
+                </expressions>
+              </then>
+            </cases>
+            <cases>
+              <case xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.2"/>
+              <then xsi:type="xbase:XBlockExpression">
+                <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+                  <feature xsi:type="types:JvmOperation" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/0/@members.4"/>
+                  <featureCallArguments xsi:type="xbase:XFeatureCall">
+                    <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/3/@members.2/@members.1/@parameters.0"/>
+                  </featureCallArguments>
+                  <featureCallArguments xsi:type="xbase:XFeatureCall">
+                    <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/3/@members.2/@members.1/@parameters.1"/>
+                  </featureCallArguments>
+                </expressions>
+              </then>
+            </cases>
+            <cases>
+              <case xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.3"/>
+              <then xsi:type="xbase:XBlockExpression">
+                <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+                  <feature xsi:type="types:JvmOperation" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/0/@members.5"/>
+                  <featureCallArguments xsi:type="xbase:XFeatureCall">
+                    <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/3/@members.2/@members.1/@parameters.0"/>
+                  </featureCallArguments>
+                  <featureCallArguments xsi:type="xbase:XFeatureCall">
+                    <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/3/@members.2/@members.1/@parameters.1"/>
+                  </featureCallArguments>
+                </expressions>
+              </then>
+            </cases>
+            <cases>
+              <case xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.4"/>
+              <then xsi:type="xbase:XBlockExpression">
+                <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+                  <feature xsi:type="types:JvmOperation" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/0/@members.6"/>
+                  <featureCallArguments xsi:type="xbase:XFeatureCall">
+                    <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/3/@members.2/@members.1/@parameters.0"/>
+                  </featureCallArguments>
+                  <featureCallArguments xsi:type="xbase:XFeatureCall">
+                    <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/3/@members.2/@members.1/@parameters.1"/>
+                  </featureCallArguments>
+                </expressions>
+              </then>
+            </cases>
+            <cases>
+              <case xsi:type="xbase:XFeatureCall" feature="//@reactionsSegments.0/@routines.1/@updateBlock/@code/@expressions.5"/>
+              <then xsi:type="xbase:XBlockExpression"/>
+            </cases>
+          </expressions>
+        </code>
+      </updateBlock>
+    </routines>
+    <routines name="createInterruptTask">
+      <input>
+        <modelInputElements metamodel="//@metamodelImports.1" name="task">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Task"/>
+        </modelInputElements>
+        <modelInputElements metamodel="//@metamodelImports.1" name="container">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//ComponentContainer"/>
+        </modelInputElements>
+      </input>
+      <matchBlock>
+        <matchStatements xsi:type="language:RetrieveModelElement" name="AscetModule">
+          <elementType metamodel="//@metamodelImports.0">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//AscetModule"/>
+          </elementType>
+          <correspondenceSource xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/4/@members.4/@members.2/@parameters.1"/>
+          </correspondenceSource>
+          <retrievalType xsi:type="language:RetrieveOneModelElement"/>
+        </matchStatements>
+        <matchStatements xsi:type="language:RequireAbscenceOfModelElement">
+          <elementType metamodel="//@metamodelImports.0">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//InterruptTask"/>
+          </elementType>
+          <correspondenceSource xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/4/@members.4/@members.3/@parameters.0"/>
+          </correspondenceSource>
+        </matchStatements>
+      </matchBlock>
+      <createBlock>
+        <createStatements metamodel="//@metamodelImports.0" name="interruptTask">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//InterruptTask"/>
+        </createStatements>
+      </createBlock>
+      <updateBlock>
+        <code xsi:type="xbase:XBlockExpression">
+          <expressions xsi:type="xbase:XBinaryOperation">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/org.eclipse.xtext.xbase.lib.CollectionExtensions#org.eclipse.xtext.xbase.lib.CollectionExtensions.operator_add(java.util.Collection,E)"/>
+            <leftOperand xsi:type="xbase:XMemberFeatureCall">
+              <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.reactionsparser.model.model.AscetModule#tools.vitruv.reactionsparser.model.model.AscetModule.getTasks()"/>
+              <memberCallTarget xsi:type="xbase:XFeatureCall">
+                <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/4/@members.6/@members.1/@parameters.2"/>
+              </memberCallTarget>
+            </leftOperand>
+            <rightOperand xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/4/@members.6/@members.1/@parameters.3"/>
+            </rightOperand>
+          </expressions>
+          <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.addCorrespondenceBetween(org.eclipse.emf.ecore.EObject,org.eclipse.emf.ecore.EObject)"/>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/4/@members.6/@members.1/@parameters.3"/>
+            </featureCallArguments>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/4/@members.6/@members.1/@parameters.1"/>
+            </featureCallArguments>
+          </expressions>
+        </code>
+      </updateBlock>
+    </routines>
+    <routines name="createPeriodicTask">
+      <input>
+        <modelInputElements metamodel="//@metamodelImports.1" name="task">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Task"/>
+        </modelInputElements>
+        <modelInputElements metamodel="//@metamodelImports.1" name="container">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//ComponentContainer"/>
+        </modelInputElements>
+      </input>
+      <matchBlock>
+        <matchStatements xsi:type="language:RetrieveModelElement" name="AscetModule">
+          <elementType metamodel="//@metamodelImports.0">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//AscetModule"/>
+          </elementType>
+          <correspondenceSource xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/5/@members.4/@members.2/@parameters.1"/>
+          </correspondenceSource>
+          <retrievalType xsi:type="language:RetrieveOneModelElement"/>
+        </matchStatements>
+        <matchStatements xsi:type="language:RequireAbscenceOfModelElement">
+          <elementType metamodel="//@metamodelImports.0">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//PeriodicTask"/>
+          </elementType>
+          <correspondenceSource xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/5/@members.4/@members.3/@parameters.0"/>
+          </correspondenceSource>
+        </matchStatements>
+      </matchBlock>
+      <createBlock>
+        <createStatements metamodel="//@metamodelImports.0" name="periodicTask">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//PeriodicTask"/>
+        </createStatements>
+      </createBlock>
+      <updateBlock>
+        <code xsi:type="xbase:XBlockExpression">
+          <expressions xsi:type="xbase:XBinaryOperation">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/org.eclipse.xtext.xbase.lib.CollectionExtensions#org.eclipse.xtext.xbase.lib.CollectionExtensions.operator_add(java.util.Collection,E)"/>
+            <leftOperand xsi:type="xbase:XMemberFeatureCall">
+              <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.reactionsparser.model.model.AscetModule#tools.vitruv.reactionsparser.model.model.AscetModule.getTasks()"/>
+              <memberCallTarget xsi:type="xbase:XFeatureCall">
+                <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/5/@members.6/@members.1/@parameters.2"/>
+              </memberCallTarget>
+            </leftOperand>
+            <rightOperand xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/5/@members.6/@members.1/@parameters.3"/>
+            </rightOperand>
+          </expressions>
+          <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.addCorrespondenceBetween(org.eclipse.emf.ecore.EObject,org.eclipse.emf.ecore.EObject)"/>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/5/@members.6/@members.1/@parameters.3"/>
+            </featureCallArguments>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/5/@members.6/@members.1/@parameters.1"/>
+            </featureCallArguments>
+          </expressions>
+        </code>
+      </updateBlock>
+    </routines>
+    <routines name="createSoftwareTask">
+      <input>
+        <modelInputElements metamodel="//@metamodelImports.1" name="task">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Task"/>
+        </modelInputElements>
+        <modelInputElements metamodel="//@metamodelImports.1" name="container">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//ComponentContainer"/>
+        </modelInputElements>
+      </input>
+      <matchBlock>
+        <matchStatements xsi:type="language:RetrieveModelElement" name="AscetModule">
+          <elementType metamodel="//@metamodelImports.0">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//AscetModule"/>
+          </elementType>
+          <correspondenceSource xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/6/@members.4/@members.2/@parameters.1"/>
+          </correspondenceSource>
+          <retrievalType xsi:type="language:RetrieveOneModelElement"/>
+        </matchStatements>
+        <matchStatements xsi:type="language:RequireAbscenceOfModelElement">
+          <elementType metamodel="//@metamodelImports.0">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//SoftwareTask"/>
+          </elementType>
+          <correspondenceSource xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/6/@members.4/@members.3/@parameters.0"/>
+          </correspondenceSource>
+        </matchStatements>
+      </matchBlock>
+      <createBlock>
+        <createStatements metamodel="//@metamodelImports.0" name="softwareTask">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//SoftwareTask"/>
+        </createStatements>
+      </createBlock>
+      <updateBlock>
+        <code xsi:type="xbase:XBlockExpression">
+          <expressions xsi:type="xbase:XBinaryOperation">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/org.eclipse.xtext.xbase.lib.CollectionExtensions#org.eclipse.xtext.xbase.lib.CollectionExtensions.operator_add(java.util.Collection,E)"/>
+            <leftOperand xsi:type="xbase:XMemberFeatureCall">
+              <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.reactionsparser.model.model.AscetModule#tools.vitruv.reactionsparser.model.model.AscetModule.getTasks()"/>
+              <memberCallTarget xsi:type="xbase:XFeatureCall">
+                <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/6/@members.6/@members.1/@parameters.2"/>
+              </memberCallTarget>
+            </leftOperand>
+            <rightOperand xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/6/@members.6/@members.1/@parameters.3"/>
+            </rightOperand>
+          </expressions>
+          <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.addCorrespondenceBetween(org.eclipse.emf.ecore.EObject,org.eclipse.emf.ecore.EObject)"/>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/6/@members.6/@members.1/@parameters.3"/>
+            </featureCallArguments>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/6/@members.6/@members.1/@parameters.1"/>
+            </featureCallArguments>
+          </expressions>
+        </code>
+      </updateBlock>
+    </routines>
+    <routines name="createTimeTableTask">
+      <input>
+        <modelInputElements metamodel="//@metamodelImports.1" name="task">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//Task"/>
+        </modelInputElements>
+        <modelInputElements metamodel="//@metamodelImports.1" name="container">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model2#//ComponentContainer"/>
+        </modelInputElements>
+      </input>
+      <matchBlock>
+        <matchStatements xsi:type="language:RetrieveModelElement" name="AscetModule">
+          <elementType metamodel="//@metamodelImports.0">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//AscetModule"/>
+          </elementType>
+          <correspondenceSource xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/7/@members.4/@members.2/@parameters.1"/>
+          </correspondenceSource>
+          <retrievalType xsi:type="language:RetrieveOneModelElement"/>
+        </matchStatements>
+        <matchStatements xsi:type="language:RequireAbscenceOfModelElement">
+          <elementType metamodel="//@metamodelImports.0">
+            <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//TimeTableTask"/>
+          </elementType>
+          <correspondenceSource xsi:type="xbase:XFeatureCall">
+            <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/7/@members.4/@members.3/@parameters.0"/>
+          </correspondenceSource>
+        </matchStatements>
+      </matchBlock>
+      <createBlock>
+        <createStatements metamodel="//@metamodelImports.0" name="timeTableTask">
+          <metaclass xsi:type="ecore:EClass" href="http://vitruv.tools/reactionsparser/model#//TimeTableTask"/>
+        </createStatements>
+      </createBlock>
+      <updateBlock>
+        <code xsi:type="xbase:XBlockExpression">
+          <expressions xsi:type="xbase:XBinaryOperation">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/org.eclipse.xtext.xbase.lib.CollectionExtensions#org.eclipse.xtext.xbase.lib.CollectionExtensions.operator_add(java.util.Collection,E)"/>
+            <leftOperand xsi:type="xbase:XMemberFeatureCall">
+              <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.reactionsparser.model.model.AscetModule#tools.vitruv.reactionsparser.model.model.AscetModule.getTasks()"/>
+              <memberCallTarget xsi:type="xbase:XFeatureCall">
+                <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/7/@members.6/@members.1/@parameters.2"/>
+              </memberCallTarget>
+            </leftOperand>
+            <rightOperand xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/7/@members.6/@members.1/@parameters.3"/>
+            </rightOperand>
+          </expressions>
+          <expressions xsi:type="xbase:XFeatureCall" explicitOperationCall="true">
+            <feature xsi:type="types:JvmOperation" href="java:/Objects/tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine#tools.vitruv.dsls.reactions.runtime.routines.AbstractRoutine$Update.addCorrespondenceBetween(org.eclipse.emf.ecore.EObject,org.eclipse.emf.ecore.EObject)"/>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/7/@members.6/@members.1/@parameters.3"/>
+            </featureCallArguments>
+            <featureCallArguments xsi:type="xbase:XFeatureCall">
+              <feature xsi:type="types:JvmFormalParameter" href="file:/C:/Users/Ingrid/ReactionsParser/parser/target/test-classes/template2.reactions#/7/@members.6/@members.1/@parameters.1"/>
+            </featureCallArguments>
+          </expressions>
+        </code>
+      </updateBlock>
+    </routines>
+  </reactionsSegments>
+</toplevelelements:ReactionsFile>

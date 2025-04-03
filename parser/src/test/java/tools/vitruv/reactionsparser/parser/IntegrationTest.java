@@ -20,36 +20,41 @@ import tools.vitruv.dsls.reactions.language.toplevelelements.ReactionsFile;
 
 public class IntegrationTest {
 
+    private static final String SEMANTIC_NS_URI = "http://www.example.org/semantic";
+    
     @BeforeAll
     public static void setupAll() {
         ReactionsLanguageStandaloneSetup.doSetup();
     }
 
-    private String inputPath = resourcePath("template.reactions");
-    private String outputPath = "template.xmi";
-
     @Test
-    public void testParse() {
-        // parse Reactions
+    public void testMultipleReactionsFiles() {
+        testReactionsParsing("template.reactions", "template.xmi");    
+        testReactionsParsing("template2.reactions", "template2.xmi");   
+    }
+
+  
+    private void testReactionsParsing(String inputFile, String outputFile) {
         var parser = new GenericXtextParser();
         ReactionsFile result = null;
+
         try {
+            String inputPath = resourcePath(inputFile);  
             result = (ReactionsFile) parser.parse(inputPath);
         } catch (Exception e) {
-            fail(e);
+            fail("Parsing failed for " + inputFile + ": " + e.getMessage());
         }
 
-        // access Reactions (just as an example)
+        
         for (var mmImport : result.getMetamodelImports()) {
-            System.out.println("import " + mmImport.getName());
+            System.out.println("[" + inputFile + "] import " + mmImport.getName());
         }
 
-        // save Reactions file as xmi
         try {
-            save(result, outputPath);
+            save(result, outputFile);  
         } catch (IOException e) {
             e.printStackTrace();
-            fail();
+            fail("Saving XMI failed for " + outputFile);
         }
     }
 
@@ -68,6 +73,5 @@ public class IntegrationTest {
         resource.getContents().add(content);
 
         resource.save(Map.of());
-    }
-
+    }   
 }

@@ -2,7 +2,13 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="http://vitruv.tools/reactionsparser/model" nsPrefix="model">
 
-  <!-- Named -->
+    <eClassifiers xsi:type="ecore:EClass" name="AscetModule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks"
+        upperBound="-1" eType="#//Task" containment="true"/>
+    </eClassifiers> 
+
+
+    <!-- Named -->
     <eClassifiers xsi:type="ecore:EClass" name="Named" abstract="true">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -17,7 +23,7 @@
     <!-- Method -->
     <eClassifiers xsi:type="ecore:EClass" name="Method"/>
 
-    <!-- Tasks -->
+    <!-- subTasks -->
     <eClassifiers xsi:type="ecore:EClass" name="InterruptTask">
         <eSuperTypes href="#//Task"/>
     </eClassifiers>
