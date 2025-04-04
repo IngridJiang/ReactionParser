@@ -52,6 +52,7 @@ public class IntegrationTest {
 
         try {
             save(result, outputFile);  
+            generateSemanticModel(result, outputFile.replace(".xmi", "_semantic.xmi"));
         } catch (IOException e) {
             e.printStackTrace();
             fail("Saving XMI failed for " + outputFile);
@@ -74,4 +75,53 @@ public class IntegrationTest {
 
         resource.save(Map.of());
     }   
+
+    private void generateSemanticModel(ReactionsFile reactionsFile, String outputPath) {
+        ResourceSet resourceSet = new ResourceSetImpl();
+        
+        // register .xmi factory
+        Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+        Map<String, Object> m = reg.getExtensionToFactoryMap();
+        m.put("xmi", new XMIResourceFactoryImpl());
+    
+        // load semantic.ecore
+        String projectRoot = new File(System.getProperty("user.dir")).getParent(); // 父目录是 model 和 parser 的公共祖先
+        String semanticEcorePath = projectRoot + "/model/src/main/ecore/semantic.ecore";
+
+        Resource semanticEcore = resourceSet.getResource(URI.createFileURI(semanticEcorePath), true);
+        EObject semanticRoot = semanticEcore.getContents().get(0);
+        
+        if (!(semanticRoot instanceof org.eclipse.emf.ecore.EPackage)) {
+            fail("semantic.ecore root is not an EPackage");
+        }
+        
+        var semanticPackage = (org.eclipse.emf.ecore.EPackage) semanticRoot;
+        var factory = semanticPackage.getEFactoryInstance();
+    
+        // create semantic.xmi resource
+        Resource semanticXmi = resourceSet.createResource(URI.createFileURI(outputPath));
+    
+        // 获取 metamodel import 的名称
+        var imports = reactionsFile.getMetamodelImports();
+        if (imports.size() < 2) {
+            fail("Less than 2 metamodel imports found.");
+        }
+    
+        // 创建两个 Metamodel 实例
+        var metamodelClass = (org.eclipse.emf.ecore.EClass) semanticPackage.getEClassifier("Metamodel");
+    
+        for (int i = 0; i < 2; i++) {
+            var mm = factory.create(metamodelClass);
+            mm.eSet(metamodelClass.getEStructuralFeature("name"), imports.get(i).getName());
+            semanticXmi.getContents().add(mm);
+        }
+    
+        // save semantic.xmi
+        try {
+            semanticXmi.save(Map.of());
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Saving semantic.xmi failed: " + e.getMessage());
+        }
+    }
 }
