@@ -2,7 +2,9 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="http://www.example.org/semantic">
   <Metamodel name="ascet">
     <metaclasses name="InterruptTask"/>
-    <metaclasses name="InitTask"/>
+    <metaclasses name="InitTask">
+      <attributes name="name"/>
+    </metaclasses>
   </Metamodel>
   <Metamodel name="amalthea">
     <metaclasses name="Task"/>
